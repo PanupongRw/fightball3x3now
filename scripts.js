@@ -80,25 +80,54 @@ function updateIndices() {
 document.addEventListener('DOMContentLoaded', () => {
     updateIndices();
 });
-// SDK //
+
+
+
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getDatabase, ref, set, get, child, update, remove } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDiA_M1FIl-nVlz6z4rs0qPnXPOfVYP9VA",
-  authDomain: "fightball3x3.firebaseapp.com",
-  projectId: "fightball3x3",
-  storageBucket: "fightball3x3.appspot.com",
-  messagingSenderId: "332683958430",
-  appId: "1:332683958430:web:9ac00d81361f975e79c38f",
-  measurementId: "G-EY92HN265V"
+    apiKey: "AIzaSyDiA_M1FIl-nVlz6z4rs0qPnXPOfVYP9VA",
+    authDomain: "fightball3x3.firebaseapp.com",
+    projectId: "fightball3x3",
+    storageBucket: "fightball3x3.appspot.com",
+    messagingSenderId: "332683958430",
+    appId: "1:332683958430:web:9ac00d81361f975e79c38f",
+    measurementId: "G-EY92HN265V"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const database = getDatabase(app);
+
+function addMatchToDatabase(match) {
+  const matchId = Date.now().toString();
+  set(ref(database, 'matches/' + matchId), match)
+    .then(() => {
+      console.log('Match added successfully');
+    })
+    .catch((error) => {
+      console.error('Error adding match:', error);
+    });
+}
+
+function addRow() {
+    // ... existing code to add row ...
+
+    // Create match object
+    const match = {
+        team1: newCellTeam1.innerHTML,
+        team2: newCellTeam2.innerHTML,
+        time: timeInput.value,
+        venue: newCellVenue.innerHTML,
+        score1: scoreInput1.value,
+        score2: scoreInput2.value
+    };
+
+    // Save match to database
+    addMatchToDatabase(match);
+
+    updateIndices();
+}
