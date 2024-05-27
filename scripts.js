@@ -61,8 +61,22 @@ function addRow() {
     const actionsCell = newRow.insertCell(7);
     actionsCell.innerHTML = '<button class="btn btn-danger btn-sm" onclick="deleteRow(this)">ลบ</button>';
 
+    // Create match object
+    const match = {
+        team1: newCellTeam1.innerHTML,
+        team2: newCellTeam2.innerHTML,
+        time: timeInput.value,
+        venue: newCellVenue.innerHTML,
+        score1: scoreInput1.value,
+        score2: scoreInput2.value
+    };
+
+    // Save match to database
+    addMatchToDatabase(match);
+
     updateIndices();
 }
+
 
 function deleteRow(button) {
     const row = button.parentNode.parentNode;
