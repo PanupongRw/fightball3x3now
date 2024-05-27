@@ -1,11 +1,9 @@
 const correctPassword = "papaman";
-const alertSound = new Audio('alert.mp3');  // เพิ่มการโหลดไฟล์เสียง
 
 function promptPassword() {
     const password = prompt("กรุณากรอกรหัสผ่านเพื่อแก้ไข:");
     if (password === correctPassword) {
         addRow();
-        alertSound.play();  // เล่นเสียงเมื่อเพิ่มแถวใหม่
     } else {
         alert("รหัสผ่านไม่ถูกต้อง!");
     }
@@ -61,22 +59,8 @@ function addRow() {
     const actionsCell = newRow.insertCell(7);
     actionsCell.innerHTML = '<button class="btn btn-danger btn-sm" onclick="deleteRow(this)">ลบ</button>';
 
-    // Create match object
-    const match = {
-        team1: newCellTeam1.innerHTML,
-        team2: newCellTeam2.innerHTML,
-        time: timeInput.value,
-        venue: newCellVenue.innerHTML,
-        score1: scoreInput1.value,
-        score2: scoreInput2.value
-    };
-
-    // Save match to database
-    addMatchToDatabase(match);
-
     updateIndices();
 }
-
 
 function deleteRow(button) {
     const row = button.parentNode.parentNode;
@@ -95,11 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
     updateIndices();
 });
 
-
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getDatabase, ref, set, get, child, update, remove } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -127,6 +112,7 @@ function addMatchToDatabase(match) {
     });
 }
 
+// Function to add row and save to database
 function addRow() {
     // ... existing code to add row ...
 
