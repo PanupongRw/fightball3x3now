@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ตารางแข่งขันบาสเกตบอล</title>
+    <title>Basketball Schedule</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -12,30 +12,32 @@
         <div class="card">
             <div class="card-body">
                 <div class="text-center mb-4">
-                    <img src="logo.png" alt="โลโก้" class="logo">
+                    <img src="logo.png" alt="Logo" class="logo">
                 </div>
-                <h1 class="text-center mb-4">ตารางแข่งขันบาสเกตบอล</h1>
+                <h1 class="text-center mb-4">Basketball Schedule</h1>
                 <table class="table table-dark table-hover table-bordered" id="scheduleTable">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>ทีม 1</th>
+                            <th>Home</th>
                             <th></th>
-                            <th>ทีม 2</th>
-                            <th>เวลา</th>
-                            <th>สถานที่</th>
-                            <th>คะแนน</th>
-                            <th>การกระทำ</th>
+                            <th>Away</th>
+                            <th>Time</th>
+                            <th>Stage</th>
+                            <th>Score</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- แถวจะถูกเพิ่มโดยอัตโนมัติที่นี่ -->
+                        <!-- Rows will be dynamically added here -->
                     </tbody>
                 </table>
-                <button class="btn btn-primary mt-3" onclick="promptPassword()">เพิ่มการแข่งขัน</button>
+                <button class="btn btn-primary mt-3" onclick="promptPassword()">Add Match</button>
             </div>
         </div>
     </div>
-    <script type="module" src="scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
